@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 1008 김승주 과제 </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        .font1 {font-family: "Nanum Myeongjo"; font-size: 50pt; color: rgb(62, 53, 239); line-height: 2.5; padding-left: 5px; /*text-align: center;*/}
+        .font2 { font-size: 18pt; font-family: "Nanum Myeongjo"; color: black; line-height: 2.0; padding-left: 10px;}
+        .font3 { font-size: 12pt; font-family: "Nanum Myeongjo"; color:black; line-height: 1.7; padding-left: 15px;}
+        .font4 { font-size: 12pt; font-family: "Nanum Myeongjo"; color:(62, 53, 239); line-height: 1.7; padding-left: 15px;}
+        
+        .line {
+            position: absolute;
+            background: rgb(62, 53, 239);
+            opacity: 0;
+            transition: opacity 3s ease;
+            transition-delay: 2.5s;
+        }
+        .line.active{
+            opacity: 1;
+        }
+        .horizontal {
+            width: 300px;
+            height: 2px;
+            top: 200px; 
+            left: 50px;
+        }
+        .vertical {
+            width: 2px;
+            height: 300px;
+            top: 50px;
+            left: 200px;
+        }
+
+        .square {
+            width: 150px;
+            height: 150px;
+            background-color: yellow;
+            /*display: flex;
+            justify-content: center;*/
+            position:absolute;
+            left:200px;
+            top: 200px;
+
+            transition: width 1s ease, height 1s ease;
+            overflow: hidden;
+        }
+        .square p { /*square 안의 텍스트(p) 태그 가리킴*/
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            margin: 0;
+        }
+        .square.hover {
+            width: 1000px;
+            height: 1400px;
+        }
+        .square.hover p { /*square.hover 안의 텍스트(p) 태그 가리킴*/
+            opacity: 1;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            background-color: skyblue;
+
+            position:absolute;
+            left:200px;
+            top: 200px;
+            transition-duration: 3s;
+            transition-timing-function: ease;
+            transition-delay: 0.5s;
+        }
+        .circle.active {
+            transform: translate(0px, -150px);
+            clip-path: circle(50%);
+        }
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            border-bottom: 150px solid yellowgreen;
+
+            position: absolute;
+            left: 200px;
+            top: 200px;
+            transition: transform 3s ease; /* transform에 대해 애니메이션 적용 */
+            transition-delay: 0.5s;
+
+        }
+        .triangle.active {
+            transform: translate(-150px, 0px);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="square">
+        <p class="font1"> 지음 </p>
+        <p class="font2"> "당신의 이야기를 담은, 시각적인 이름의 탄생!"
+        <p class="font3"> 커스텀 작명소 <b> 지음</b>은 단순한 이름 짓기를 넘어, 당신만의 개성과 스토리를 담은 맞춤형 이름, 호, 예명 등을 창의적으로 만들어 드립니다. <br> 기존 작명소와의 차별점은 바로 고객이 작명 과정에 직접 참여하여 원하는 요소를 커스터마이징할 수 있다는 점입니다. <br> 또한, 이름을 단순한 텍스트로 제공하는 것이 아니라, 시각적 이미지로 재구성해 이름을 보는 순간 특별한 감각과 의미를 느낄 수 있도록 합니다. <br> <b>나만의 독창적이고 감각적인 이름을 완성해 보세요.</b> </p>
+        <p class="font3"> <br><br> <b> 이름은, </b> <br> 나를 가장 상징적으로 보여주고 가리킨다고 생각 <br> :말로 했을 때 - 비물질적, 휘발, 일시적, 가변적, 자유분방한 이미지 <br> :글로 썼을 때 - 물질적, 기록, 영구적, 영구적, 명확한 이미지
+        <br> 글자를 연상시키면서 자유분방함과 명확함이라는 이미지를 모두 보여줄 수 있도록 구상함 </p>
+        <p class="font3"> <br> 이름은, <br> 태어날 때 주어짐. 잘 바뀌지 않는다는 특징을 가지고 있음. <br> 반면 ‘호’는 후천적으로 붙여지며 정할 수 있는 것임. 가변적임. <br> <b>호를 개인이 임의로 선택할 수 있도록 다양한 요소를 제공하는 브랜드를 만들고자 함.</b> </p>
+        <p class="font3"> <br> -한글 창제 원리인 천지인에서 자연의 형상을 모티브로, 각 자모 음운들을 기본도형들로 단순화하여 이와 결합한 포스터를 제작하였는데<br>이 방법을 활용하여 ‘호’를 꼭 읽을 수 있는 문자의 형태가 아닌 문자를 활용한 시각 이미지로 인식할 수 있도록 제작.<br> -각 자모를 단순화시켜 조합 가능한 이미지로 만듦. <br> 창제 원리를 기반으로 하여 한글 자모를 도형 형태로 단순화. </p>
+        <p class="font4"> <br> 브랜드명: <b> 지음 <br> (1) ‘짓다’ - 이름 따위를 정하다. <br> (2) ‘소리를 알아 듣다’ 라는 뜻의 한자  知音 </b> <br> -말하지 않아도 속마음을 알아주는 친구. <br> <br> >가변적 특성을 가진 본래 호를, 사용자 개인이 랜덤하게 커스텀하여, 발음할 수 없지만 명확한 시각 이미지화. <br> 이 세 과정을 거쳐서 최종적으로 <b>자유분방과 명확함</b>이라는 키워드의 결합을 보여주고자 함.</p>
+    </div>
+    <div class="circle"></div>
+    <div class="triangle"></div>
+    <div class="line horizontal"></div>
+    <div class="line vertical"></div>
+
+    <script>
+        window.onload = function() {
+            const circle = document.querySelector('.circle');
+            const triangle = document.querySelector('.triangle');
+            const lines = document.querySelectorAll('.line');
+            const square = document.querySelector('.square');
+
+            circle.classList.add('active'); /*CSS 선택자를 사용하여 문서 내에서 첫 번째로 일치하는 요소를 선택하는 메서드*/
+            triangle.classList.add('active'); /*active라는 클래스를 선택한 요소의 클래스 목록에 추가*/
+            lines.forEach(line => line.classList.add('active'));
+
+
+            const totalTransitionDuration = 4.5;
+            setTimeout(() => {
+                square.addEventListener('mouseenter', () => {
+                    square.classList.add('hover');
+                });
+                square.addEventListener('mouseleave', () => {
+                    square.classList.remove('hover');
+                });
+
+                square.classList.add('hover');
+            }, totalTransitionDuration * 1000);
+        }
+    </script>
+</body>
+</html>
